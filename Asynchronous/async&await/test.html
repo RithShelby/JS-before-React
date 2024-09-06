@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <button id="fetchBtn">Fetch Data</button>
+        <button id="delete">delete Data</button>
+        <p id="text"></p>
+        <p id="dataApi"></p>
+    </center>
+</body>
+<script>
+    function API() {
+        return new Promise((resovle) => {
+            setTimeout(resovle, 3000);
+        });
+    }
+    async function fetchData() {
+        const text = document.getElementById('text');
+        const dataApi = document.getElementById('dataApi');
+
+        text.innerHTML = "Data is fetching...!";
+        await API();
+        const result = await fetch("https://jsonplaceholder.typicode.com/comments/1");
+        const data = await result.json();
+        text.innerHTML = "Data has been fetched";
+        dataApi.innerHTML = JSON.stringify(data, null, 2);
+    }
+    function deleteData() {
+        const text = document.getElementById('text');
+        const dataApi = document.getElementById('dataApi');
+
+        text.innerHTML = "";
+        dataApi.innerHTML = "";
+    }
+    const btn = document.getElementById('fetchBtn');
+    btn.addEventListener("click", () => {
+        fetchData();
+    })
+    const btnDelete = document.getElementById('delete');
+    btnDelete.addEventListener("click", () => {
+        deleteData();
+    })
+</script>
+
+</html>

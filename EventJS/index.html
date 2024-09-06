@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+    <button id="btn" onclick="create()">Click me!!</button>
+    <button id="remove" onclick="remove()">Remove text!!</button>
+</body>
+<script>
+    function create() {
+        var text = document.createElement('p');
+        text.innerHTML = "hello world";
+        text.style.textAlign = "center";
+        text.id = "textRemove"
+        document.body.appendChild(text);
+    }
+    function remove() {
+        const remove = document.getElementById("textRemove");
+        if (remove) {
+            remove.remove();
+        }
+    }
+</script>
+
+</html>

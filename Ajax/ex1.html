@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Dynamic Content with Ajax</h1>
+    <p id="content">This content will be replaced by Ajax.</p>
+
+    <button onclick="loadData()">Load Data</button>
+
+    <script>
+        function loadData() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configure it: specify the type of request and the URL
+            xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+
+            // Set up a callback function to handle the response
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Success! Parse the response and update the content
+                    var responseData = JSON.parse(xhr.responseText);
+
+                    // Iterate through the data and update the content
+                    var contentHTML = '';
+                    responseData.forEach(function (post) {
+                        contentHTML += '<p>' + post.title + '</p>';
+                    });
+
+                    document.getElementById('content').innerHTML = contentHTML;
+                } else {
+                    // Request failed
+                    console.error('Request failed with status', xhr.status);
+                }
+            };
+            // Send the request
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>

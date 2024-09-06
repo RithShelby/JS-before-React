@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="updatedData">
+        <!-- The updated data will be displayed here -->
+    </div>
+</body>
+<script>
+    const dataToUpdate = {
+        id: 1,
+        title: "Mountain",
+        body: "This is the updated content of the blog post.",
+        author: "John",
+        img: ["https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D",
+            "https://cdn.ramblers.org.uk/styles/xl/s3/2023-03/mountain.jpg?itok=h0cZc9BN"]
+
+    };
+    const jsonString = JSON.stringify(dataToUpdate);
+    const url = "https://jsonplaceholder.typicode.com/posts/1"; // Replace this with the real API endpoint
+
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: jsonString,
+    };
+    fetch(url, options)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const updatedData = document.getElementById('updatedData');
+            updatedData.innerHTML = `
+        <div class = "flex flex-col items-center">
+        <h2>${data.title}</h2>
+        <p><strong>Author:</strong> ${data.author}</p>
+        <p>${data.body}</p>
+        <img class="w-96" src = "${data.img[1]}">
+        </div>
+    `;
+        })
+        .catch((error) => {
+            console.error("Error fetching and updating data:", error);
+        });
+
+</script>
+
+</html>

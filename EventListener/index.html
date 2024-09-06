@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="create">Add !!</button>
+    <button id="read">Read !!</button>
+    <button id="update">Update !!</button>
+    <button id="delete">Delete !!</button>
+    <div id="output"></div>
+</body>
+<script>
+    const buttonCreate = document.getElementById("create");
+    const buttonRemove = document.getElementById("read");
+    const buttonUpdate = document.getElementById("update");
+    const buttonDelete = document.getElementById("delete");
+    const outputDiv = document.getElementById("output");
+    function create() {
+        const text = document.createElement("p");
+        text.innerHTML = "hello world!";
+        text.id = "Text"; // make id for 
+        document.body.appendChild(text);
+    }
+    function read() {
+        const textContent = document.getElementById("Text").innerHTML;
+        outputDiv.innerHTML = "Read content: " + textContent;
+    }
+
+    function update() {
+        const update = document.getElementById("Text");
+        update.innerHTML = "hello bro";
+        document.body.append(update);
+    }
+    function Delete() {
+        const Delete = document.getElementById("Text");
+        Delete.remove();
+    }
+    buttonCreate.addEventListener("click", create);
+    buttonRemove.addEventListener("click", read);
+    buttonUpdate.addEventListener("click", update);
+    buttonDelete.addEventListener("click", Delete);
+</script>
+
+</html>
